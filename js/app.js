@@ -10,28 +10,27 @@ document.querySelector("#cp").addEventListener("input", function () {
 
     fetch(url)
       .then((response) =>
-        response.json()//le 1er then ns permet de formatter la reponse
-        .then((data) => {//le 2em va ns permettre de traiter les données
-          console.log(data);
-          let affichage = "<ul>";
-          for (let ville of data) {
-            affichage += `<li><strong>${ville.nom}</strong> - ${ville.population} habitants</li> `;
-          }
-          affichage += "</ul>";
-          document.querySelector("#villes").innerHTML = affichage;
-        })
+        response
+          .json() //le 1er then ns permet de formatter la reponse
+          .then((data) => {//le 2em va ns permettre de traiter les données
+            console.log(data);
+            let affichage = "<ul>";
+            for (let ville of data) {
+              affichage += `<li><strong>${ville.nom}</strong> - ${ville.population} habitants</li> `;
+            }
+            affichage += "</ul>";
+            document.querySelector("#villes").innerHTML = affichage;
+          })
       )
-      .catch((err) => console.log("Erreur : " + err));//Permet d'afficher les error lorsk sa ne fonctionne pas 
+      .catch((err) => console.log("Erreur : " + err)); //Permet d'afficher les error lorsk sa ne fonctionne pas
+  } else {
+    let sms;
+    sms = "this value is invalid";
+    document.querySelector("#villes").innerHTML = sms;
+    // document.querySelector("").classList.add("text-danger");
+    // document.querySelector("sms").classList.add("text-danger");
   }
 });
-
-
-
-
-
-
-
-
 
 // fetch("https://api.github.com/users/MariamaBalde")
 //   .then((response) => response.json())
